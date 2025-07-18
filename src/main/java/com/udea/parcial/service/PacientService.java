@@ -39,7 +39,7 @@ public class PacientService {
   }
 
   public List<ClinicHistory> getHistoryBySsn(String ssn){
-    return clinicHistoryRepository.findBySsnPacient(ssn);
+    return clinicHistoryRepository.findByPacientSsn(ssn);
   }
 
 }

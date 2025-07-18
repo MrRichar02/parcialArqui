@@ -25,6 +25,6 @@ public class Doctor {
   private String name;
   private String ssn;
   private String speciality;
-  @OneToMany(mappedBy = "doctores")
+  @OneToMany(mappedBy = "doctor")
   private List<ClinicHistory> historia;
 }

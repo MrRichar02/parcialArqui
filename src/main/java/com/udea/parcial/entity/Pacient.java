@@ -31,7 +31,7 @@ public class Pacient {
   private Integer age;
 
   private String gender;
-  @OneToMany(mappedBy = "paciente")
+  @OneToMany(mappedBy = "pacient")
   private List<ClinicHistory> historia;
 }
 

@@ -1,0 +1,51 @@
+type Pacients{
+    id:ID!
+    name: String!
+    lastName: String!
+    ssn: String!
+    age: Int!
+    gender: String!
+}
+
+type Doctors{
+    id:ID!
+    name: String!
+    ssn: String!
+    speciality: String!
+}
+
+type ClinicHistory{
+    id:ID!
+    chiefComplaint: String!
+    diagnostic: String!
+    treatment: String!
+    date: String!
+    pacient: Pacients!
+    doctor: Doctors!
+}
+
+type Mutation {
+  # Pacientes
+  addPacient(name: String!, lastName: String!, ssn: String!, age: Int!, gender: String!): Pacients!
+
+  # Doctores
+  addDoctor(name: String!, ssn: String!, speciality: String!): Doctors!
+
+  # Historias clínicas
+  createClinicHistory(chiefComplaint: String!, diagnostic: String!, treatment: String!, date: String!, pacientId: ID!, doctorId: ID!): ClinicHistory!
+  updateClinicHistory(id: ID!, chiefComplaint: String, diagnostic: String, treatment: String, date: String, pacientId: ID, doctorId: ID): ClinicHistory!
+  deleteClinicHistory(id: ID!): Boolean!
+}
+
+type Query {
+  # Obtener todos los pacientes o un paciente por ID
+  getHistories(ssn: String!): [ClinicHistory!]!
+
+  # Obtener todos los doctores o un doctor por ID
+  getAllDoctors: [Doctors!]!
+  getDoctorById(id: ID!): Doctors
+
+  # Obtener todas las historias clínicas o una por ID
+  getAllClinicHistories: [ClinicHistory!]!
+  getClinicHistoryById(id: ID!): ClinicHistory
+}

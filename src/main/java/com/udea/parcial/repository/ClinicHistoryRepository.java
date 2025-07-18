@@ -9,5 +9,5 @@ import com.udea.parcial.entity.ClinicHistory;
 
 @Repository
 public interface ClinicHistoryRepository extends JpaRepository<ClinicHistory, Long> {
-  List<ClinicHistory> findBySsnPacient(String ssn);
+  List<ClinicHistory> findByPacientSsn(String ssn);
 }

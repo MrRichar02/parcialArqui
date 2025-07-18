@@ -2,6 +2,8 @@ package com.udea.parcial.service;
 
 import java.time.LocalDate;
 
+import com.udea.parcial.entity.Doctor;
+import com.udea.parcial.entity.Pacient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,14 +24,21 @@ public class ClinicHistoryService {
   @Autowired
   DoctorRepository doctorRepository;
 
-  public ClinicHistory createClinicHystory(String chiefComplaint, String diagnostic, String treatment, LocalDate date, Long paciente_id, Long doctor_id){
+  public ClinicHistory createClinicHistory(String chiefComplaint, String diagnostic, String treatment, LocalDate date, Long pacientId, Long doctorId) {
+    Pacient pacient = pacientRepository.findById(pacientId)
+            .orElseThrow(() -> new RuntimeException("Paciente no encontrado"));
+    Doctor doctor = doctorRepository.findById(doctorId)
+            .orElseThrow(() -> new RuntimeException("Doctor no encontrado"));
+
     ClinicHistory clinicHistory = new ClinicHistory();
     clinicHistory.setChiefComplaint(chiefComplaint);
     clinicHistory.setDiagnostic(diagnostic);
     clinicHistory.setTreatment(treatment);
     clinicHistory.setDate(date);
-    clinicHistory.setPaciente_id(pacientRepository.findById(paciente_id));
-    clinicHistory.setdoctor_id(doctorRepository.findById(paciente_id));
-  }
+    clinicHistory.setPacient(pacient);
+    clinicHistory.setDoctor(doctor);
 
+    return clinicHistoryRepository.save(clinicHistory);
+  }
 }
+

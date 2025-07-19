@@ -33,19 +33,9 @@ type Mutation {
 
   # Historias clínicas
   createClinicHistory(chiefComplaint: String!, diagnostic: String!, treatment: String!, date: String!, pacientId: ID!, doctorId: ID!): ClinicHistory!
-  updateClinicHistory(id: ID!, chiefComplaint: String, diagnostic: String, treatment: String, date: String, pacientId: ID, doctorId: ID): ClinicHistory!
-  deleteClinicHistory(id: ID!): Boolean!
 }
 
 type Query {
   # Obtener todos los pacientes o un paciente por ID
   getHistories(ssn: String!): [ClinicHistory!]!
-
-  # Obtener todos los doctores o un doctor por ID
-  getAllDoctors: [Doctors!]!
-  getDoctorById(id: ID!): Doctors
-
-  # Obtener todas las historias clínicas o una por ID
-  getAllClinicHistories: [ClinicHistory!]!
-  getClinicHistoryById(id: ID!): ClinicHistory
 }
